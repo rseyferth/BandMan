@@ -1,0 +1,15 @@
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag path + ".js" %>
+<% end %>
+
+<div class="comments">
+
+	<hr />
+
+	<h2><div class="icon comment"></div><%= t "frontend.comments.title" %> (<span class="number_of_comments"></span>)</h2>
+	<div class="comments-list ajax-content indent" data-source="<%= path %>.json">
+
+	</div>
+
+</div>
+

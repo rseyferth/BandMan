@@ -1,0 +1,93 @@
+// Helvetica Neue Std BoldCondensed
+$helvBoldCd: "Helvetica Bold Condensed";
+@include font-face($helvBoldCd, 
+	font-files(		
+		"fonts/helveticaneueltstd-bdcn-webfont.woff",		
+		"fonts/helveticaneueltstd-bdcn-webfont.ttf",
+		"fonts/helveticaneueltstd-bdcn-webfont.svg"		
+	), 
+	"helveticaneueltstd-bdcn-webfont.eot",
+	bold
+);
+
+// Helvetica Neue Std Bold
+$helvBold: "Helvetica Bold";
+@include font-face($helvBold, 
+	font-files(		
+		"fonts/helveticaneueltstd-bd-webfont.woff",		
+		"fonts/helveticaneueltstd-bd-webfont.ttf",
+		"fonts/helveticaneueltstd-bd-webfont.svg"		
+	), 
+	"helveticaneueltstd-bd-webfont.eot",
+	bold
+);
+
+// Helvetica Neue Std Black
+$helvBlack: "Helvetica Black";
+@include font-face($helvBlack, 
+	font-files(		
+		"fonts/helveticaneueltstd-blk-webfont.woff",		
+		"fonts/helveticaneueltstd-blk-webfont.ttf",
+		"fonts/helveticaneueltstd-blk-webfont.svg"		
+	), 
+	"helveticaneueltstd-blk-webfont.eot",
+	bold
+);
+
+// Helvetica Neue Std Italic
+$helvItalic: "Helvetica Italic";
+@include font-face($helvItalic, 
+	font-files(		
+		"fonts/helveticaneueltstd-it-webfont.woff",		
+		"fonts/helveticaneueltstd-it-webfont.ttf",
+		"fonts/helveticaneueltstd-it-webfont.svg"		
+	), 
+	"helveticaneueltstd-it-webfont.eot",
+	normal
+);
+
+// Helvetica Neue Std Light
+$helvLight: "Helvetica Light";
+@include font-face($helvLight, 
+	font-files(		
+		"fonts/helveticaneueltstd-lt-webfont.woff",		
+		"fonts/helveticaneueltstd-lt-webfont.ttf",
+		"fonts/helveticaneueltstd-lt-webfont.svg"		
+	), 
+	"helveticaneueltstd-lt-webfont.eot",
+	normal
+);
+
+
+// Helvetica Neue Std Roman
+$helvRoman: "Helvetica Roman";
+@include font-face($helvRoman, 
+	font-files(		
+		"fonts/helveticaneueltstd-roman-webfont.woff",		
+		"fonts/helveticaneueltstd-roman-webfont.ttf",
+		"fonts/helveticaneueltstd-roman-webfont.svg"		
+	), 
+	"helveticaneueltstd-roman-webfont.eot",
+	normal
+);
+
+
+// Helvetica Neue Std Thin
+$helvThin: "Helvetica Thin";
+@include font-face($helvThin, 
+	font-files(		
+		"fonts/helveticaneueltstd-th-webfont.woff",		
+		"fonts/helveticaneueltstd-th-webfont.ttf",
+		"fonts/helveticaneueltstd-th-webfont.svg"		
+	), 
+	"helveticaneueltstd-th-webfont.eot",
+	normal
+);
+
+
+
+
+
+
+
+

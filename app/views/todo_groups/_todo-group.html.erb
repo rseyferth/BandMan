@@ -1,0 +1,6 @@
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag band_todo_groups_path + ".js" %>
+<% end %>
+
+<div class="todos ajax-content" data-source="<%= request.fullpath %>">	
+</div>

@@ -1,0 +1,347 @@
+// Colors used
+$colorInputBackground: $white;
+$colorInputBorder: #ccc;
+
+$colorValidationValid: #18ff00;
+$colorValidationError: #f00;
+$colorValidationNeutral: #f9f9f9;
+
+// All within the form class
+.form {
+
+	/**
+	 * Columns
+	 */
+	.columns {
+
+		display: table;
+		
+		.column {
+
+			display: table-cell;
+			vertical-align: top;
+			padding: 0 emsize(30px);
+			width: emsize(422px);
+
+		}
+		.column:first-child {
+			padding-left: 0;
+		}
+		.column:last-child {
+			padding-right: 0;
+		}
+
+	}
+	
+	/**
+	 * Basic field styling
+	 */
+	.field {
+		margin: 0 0 emsize(14px);
+
+	}
+
+	// Label
+	label {
+		margin: 0;
+		display: block;
+		font-size: emsize(14px);
+
+	}
+
+
+	/**
+	 * Text fields
+	 */
+	input[type=text], input[type=email], input[type=password], textarea {
+
+		@include input-placeholder(#ccc);
+
+		font-size: emsize(16px);
+		width: emsize(360px, 16px);
+		padding: emsize(6px, 16px) emsize(8px, 16px);
+
+		@include border-radius(emsize(8px, 16px));
+
+		border: 1px solid $colorInputBorder;
+		background-color: $colorInputBackground;
+
+		color: $darkGray;
+
+	}
+
+	textarea {
+
+		height: emsize(80px, 16px);
+		min-height: emsize(60px, 16px);
+		min-width: emsize(360px, 16px);
+		max-width: emsize(360px, 16px);
+
+	}
+
+
+
+	/**
+	 * Select boxes
+	 */
+	select {
+
+		font-size: emsize(16px);
+		width: emsize(360px + 16px, 16px);
+		padding: emsize(6px, 16px) emsize(8px, 16px);
+
+		@include border-radius(emsize(8px, 16px));
+
+		border: 1px solid $colorInputBorder;
+		background-color: $colorInputBackground;
+
+		color: $darkGray;
+
+	}
+
+
+
+	/**
+	 * Rich form validation styles
+	 */
+	.field {
+
+		.input {
+
+			background: $colorValidationNeutral;
+			
+			position: relative;
+
+			padding: emsize(6px);
+			width: emsize(422px - 12px);
+
+			.icon {
+				position: absolute;
+				right: emsize(8px);
+				top: emsize(10px);
+				@include opacity(0.2);
+			}
+
+		}
+
+
+		
+
+	}
+
+	.field.valid {
+
+		.input {
+
+			background: rgba($colorValidationValid, 0.1);
+
+			.icon {
+				@extend .icon.heart;		
+			}
+
+		}
+
+	}
+
+	.field.error {
+
+		.input {
+			background: rgba($colorValidationError, 0.1);
+
+			.icon {
+				@extend .icon.warning;
+				cursor: pointer;
+			}
+		}
+
+	}
+
+
+	.actions {
+
+		margin-top: emsize(20px);
+
+		width: emsize(904px - 40px);
+		background-color: #f00;
+		padding: emsize(11px) emsize(20px) emsize(11px) emsize(20px);
+		text-align: right;
+
+		@include border-radius(emsize(5px));
+		@include background-image(
+			linear-gradient($lightGrayGradientLight, $lightGrayGradientDark)
+		);
+
+		a.button {
+
+			display: inline-block;
+
+			font-family: $helvThin;
+			font-size: emsize(20px);
+
+			color: $blackGreen;
+
+			margin: 0 emsize(2px);
+
+			@include border-radius(emsize(5px));
+			padding: emsize(4px) emsize(12px);
+			border: emsize(2px) solid $white;
+			@include background-image(
+				linear-gradient($lightGrayGradientLight, $lightGrayGradientDark)
+			);
+
+			text-decoration: none;
+
+		}
+
+		a.button.main-action {
+			@include background-image(
+				linear-gradient($greenGradientLight, $greenGradientDark)
+			);
+		}
+
+		a.button.back {
+			float: left;
+		}
+
+	}
+
+
+}
+
+.form.small {
+
+	.actions {
+
+		margin-top: 0;
+
+		background-color: #f00;
+		padding: emsize(11px);
+		text-align: right;
+		width: emsize(422px - 22px);
+
+		a.button {
+
+			font-size: emsize(16px);
+
+
+		}
+
+	}
+
+}
+
+
+
+/**
+ * Step wizard
+ */
+.form.steps {
+
+	.step-navigation {
+		@include horizontal-list-container;
+
+		margin: emsize(4px) 0 emsize(16px);
+
+
+		>li  {
+			@include horizontal-list-item(emsize(15px, 18px));
+			font-family: $helvThin;
+			font-size: emsize(18px);
+
+			span {
+				font-size: 1em;
+				font-family: $helvThin;							
+			}
+		}
+
+		>li.active {
+
+		}
+
+		>li.inactive {
+			color: rgba($black, 0.2);
+		}
+
+		>li.inactive.complete {
+			cursor: pointer;
+		}
+	}
+
+	.step {
+		display: none;
+	}
+	.step.active {
+		display: block;
+	}
+	
+}
+
+/**
+ * Ajax form
+ */
+.form.ajax {
+
+	position: relative;
+
+	.form-complete {
+		display: none;
+	}
+
+	.loading {
+
+		display: none;
+
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+
+		background-color: $white;
+		@include opacity(0.9);
+
+		.loading-image {
+
+			background: image-url('ajax-loader.gif');
+			width: 32px;
+			height: 32px;
+
+		}
+
+	}
+
+}
+
+
+
+/**
+ * Folding form
+ */
+.form.folding {
+
+	h1, h2 {
+
+		@include opacity(0.2);
+		cursor: pointer;
+
+	}
+	h1:hover, h2:hover {
+
+		@include opacity(0.5);
+
+	}
+
+	.folding-content {
+
+		display: none;
+
+	}
+
+}
+.form.folding.open {
+
+	h1, h2 {
+		@include opacity(0.5);
+	}
+
+}

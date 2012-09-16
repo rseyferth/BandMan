@@ -1,0 +1,24 @@
+<div class="signup form steps ajax">
+	
+	<form class="rich" method="post" action="<%= signup_create_path %>">
+	
+		<h1><%= t "frontend.signup.title" %></h1>
+
+		<ul class="step-navigation">
+			<li class="active"><%= t "words.step" %> 1<span>: <%= t "frontend.signup.step1.title" %><span></li>
+			<li class="inactive"><%= t "words.step" %> 2<span>: <%= t "frontend.signup.step2.title" %><span></li>
+		</ul>
+
+		<%= render 'signup-step1' %>
+		<%= render 'signup-step2' %>
+	</form>
+
+	<div class="form-complete">
+		
+		<%= render 'signup-complete' %>
+		
+	</div>
+
+
+
+</div>

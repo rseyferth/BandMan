@@ -1,0 +1,102 @@
+$(document).ready(function(){
+
+	// Instantiate global object
+	$.comments = {};
+	$.comments.target = $(".content .comments .comments-list");
+	$.comments.title = $(".content .comments h2")
+	
+	// Load todo's
+	$.comments.load = function() {
+
+		// Find the data source
+		var sUrl = $.comments.target.attr("data-source");
+		
+		// Empty and set to loading
+		$.comments.target.empty().addClass("loading");
+
+		// Load 
+		$.ajax({
+
+			url: sUrl,
+			dataType: "json"
+
+		}).then(function(result) {
+
+			// Is result wrapped in an array, or a single item?
+			if (!$.isArray(result)) {
+				
+				// Add single one
+				$.comments.addComment(result);
+
+				// 1 comment.
+				$.comments.title.find(".number_of_comments").html("1");
+
+			} else {
+
+				// Loop through result and add 'em
+				$.each(result, function(index, comment) {
+					$.comments.addComment(comment);
+				});
+
+				// Set number in title
+				$.comments.title.find(".number_of_comments").html(result.length.toString());
+
+			}
+			
+		}).fail(function(result) {
+
+			// Show error
+			alert("ERROR");
+
+		}).done(function() {
+
+			// No longer loading.
+			$.comments.target.removeClass("loading");
+
+		});
+		
+
+	};
+
+	// Add a comment
+	$.comments.addComment = function(oComment) {
+
+		// Main object
+		var $comment = $("<div>")
+							.addClass("comment")
+							.data("comment", oComment),
+
+		// Name
+		$name = $("<h3>")
+					.html(oComment.user.fullname)
+					.appendTo($comment),
+
+		// Date 
+		$date = $("<div>")
+					.addClass("date")
+					.html($.timeago(oComment.created_at))
+					.appendTo($comment),
+
+		// Message
+		$message = $("<div>")
+					.addClass("message")
+					.html(oComment.message)
+					.appendTo($comment),
+
+		// HR
+		$hr = $("<hr>")
+					.appendTo($comment);
+
+
+
+
+		// Add it
+		$comment.appendTo($.comments.target);
+
+	}
+
+
+	// Load now
+	$.comments.load();
+
+});

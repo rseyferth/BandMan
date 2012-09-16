@@ -1,0 +1,55 @@
+<div id="signup-step1" class="step active">
+	<%= hidden_field(:user, :preferred_locale, :value => t("frontend.site.locale")) %>
+
+	<div class="columns">
+		<div class="column">
+
+			 <div class="field">
+				<%= label :contact, :firstname, t("frontend.signup.step1.firstname.label") %>
+				<%= text_field :contact, :firstname,
+						:placeholder => t("frontend.signup.step1.firstname.placeholder"),
+						"data-validate" => "rule: name, min-length: 2"							
+				%>
+			</div>
+			<div class="field">
+				<%= label :contact, :lastname, t("frontend.signup.step1.lastname.label") %>
+				<%= text_field :contact, :lastname,
+						:placeholder => t("frontend.signup.step1.lastname.placeholder"),
+						"data-validate" => "rule: name, min-length: 2"							
+				%>
+			</div>
+			<div class="field">
+				<%= label :contact, :country, t("frontend.signup.step1.country.label") %>
+				<%= country_select :contact, :country_code, {priority: @defaultCountries}, prompt: t("frontend.signup.step1.country.placeholder") %>
+			</div>
+
+		</div>
+		<div class="column">
+			<div class="field">
+				<%= label(:user, :email, t("frontend.signup.step1.email.label")) %>
+				<%= email_field :user, :email, 
+						:placeholder => t("frontend.signup.step1.email.placeholder"),
+						"data-validate" => "rule: email, remote: " + signup_validate_email_path %>
+			</div>
+			<div class="field">
+				<%= label :user, :password, t("frontend.signup.step1.password.label") %>
+				<%= password_field :user, :password,
+						"data-validate" => "min-length: 6", :value => "" %>
+			</div>
+			<div class="field">
+				<%= label :user, :password_confirmation, t("frontend.signup.step1.password_confirmation.label") %>
+				<%= password_field :user, :password_confirmation,
+						"data-validate" => "same_as: user[password]", :value => "" %>
+			</div>
+			
+			
+		</div>
+	
+	</div>
+
+	<div class="actions">
+		<a href="#" class="button main-action next-step"><%= t "frontend.signup.buttons.to_step2" %></a>
+	</div>
+
+
+</div>

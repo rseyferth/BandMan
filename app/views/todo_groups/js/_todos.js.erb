@@ -1,0 +1,309 @@
+$(document).ready(function(){
+
+	// Instantiate global object
+	$.todos = {};
+	$.todos.target = $(".content .todos");
+	
+	// Load todo's
+	$.todos.load = function() {
+
+		// Get data source
+		var sUrl = $.todos.target.attr("data-source");
+
+		// Empty and set to loading
+		$.todos.target.empty().addClass("loading");
+
+
+		// Load 
+		$.ajax({
+
+			url: sUrl,
+			dataType: "json"
+
+		}).then(function(result) {
+
+			// Is result wrapped in an array, or a single item?
+			if (!$.isArray(result)) {
+				
+				// Add single one
+				$.todos.addList(result);
+
+			} else {
+
+				// Loop through result and add 'em
+				$.each(result, function(index, list) {
+					$.todos.addList(list);
+				});
+
+			}
+			
+		}).fail(function(result) {
+
+			// Show error
+			alert("ERROR");
+
+		}).done(function() {
+
+			// No longer loading.
+			$.todos.target.removeClass("loading");
+
+		});
+		
+
+	};
+
+	// Add to-do list
+	$.todos.addList = function(oList) {
+
+		// Create main object
+		var $list = $("<div>").addClass("todo-list").data("todoList", oList);
+			
+		// Create title
+		var $title = $("<h2>")
+			.append(
+				$("<a>")
+					.attr("href", Routes.band_todo_group_path('<%= @current_band.to_param %>', oList.to_param))
+					.html(oList.title)
+			)
+			.appendTo($list);
+
+		// Description?
+		if (oList.description !== "") {
+			var $description = $("<span>")
+					.addClass("description")
+					.html(oList.description)
+					.appendTo($list);
+		}
+
+		// Create listing
+		var $table = $("<table>").appendTo($list);
+
+		// Any items?
+		if (typeof oList.todos === "object") {
+
+			// Loop and add
+			$.each(oList.todos, function(index, todo) {
+
+				$.todos.addTodo($list, todo);
+
+			});
+
+		}
+		
+
+
+		// Add todo-item form
+		var $addForm = $("<%= escape_javascript(render :partial => "new-todo-form" ) %>")
+					.appendTo($list);
+
+		// Set action for this form
+		$addForm.find("form")
+			.attr("action", Routes.band_todo_group_todos_path('<%= @current_band.to_param %>', oList.to_param))
+
+		// Add hidden field for the group id
+		.prepend(
+			$('<input type="hidden" name="todo[group_id]" value="' + oList.id + '">')
+		);
+
+		// Activate the form
+		$addForm
+			.ajaxForm()
+			.richForm()
+			.bind("success", function(e, oTodo) {
+
+				// Add the item :)
+				$.todos.addTodo($list, oTodo);
+
+				// Reset the form
+				$addForm.ajaxForm("reset");
+
+			})
+			.bind("error", $.bandman.onError);
+
+		// Add click/hide behavior
+		$addForm.bind("click", function(e) {
+
+			// Switch
+			$addForm.toggleClass("active", true).find("input").focus();
+
+		}).find("input").bind("blur", function() {
+
+			// Switch back
+			$addForm.toggleClass("active", false);
+
+		});
+
+	
+		// Append to page
+		$.todos.target.append($list);
+
+	};
+	
+	$.todos.addTodo = function($list, oTodo) {
+
+		// Get list info
+		var oList = $list.data("todoList");
+
+		// Find UL
+		var $table = $list.find("table");
+
+		// Create item
+		var $row = $("<tr>")
+						.addClass("todo")
+						.data("todo", oTodo),
+
+		// Dragger
+		$dragger = $("<td>")
+						.addClass("dragger")
+						.html(' ')
+						.appendTo($row),
+
+		// Checkbox
+		$check = $("<td>")
+						.addClass("check")
+						.html(" ")
+						.appendTo($row),
+		$checkIcon = $("<div>")
+						.addClass("icon")
+						.appendTo($check),
+
+		// Title
+		$title = $("<td>")
+						.addClass("title")
+						.html(oTodo.title)
+						.appendTo($row),
+
+		
+
+		// Comments
+		$comments = $("<td>")
+						.addClass("comments")
+						.appendTo($row),
+		$commentsLink = $("<a>")
+						.attr("href", Routes.band_todo_group_todo_path('<%= @current_band.to_param %>', oList.to_param, oTodo.to_param))
+						.appendTo($comments)
+		$commentsAttachment = $("<div>")
+						.addClass("icon")
+						.addClass("attachment")
+						.appendTo($commentsLink),
+		$commentsIcon = $("<div>")
+						.addClass("icon")
+						.addClass("comment")
+						.appendTo($commentsLink),
+		$commentsCaption = $("<span>")
+						.html(I18n.t("frontend.comments.number_of_comments", {count: oTodo.comments_count } ))
+						.appendTo($commentsLink),
+
+		// Delete
+		$delete = $("<td>")
+						.addClass("delete")
+						.appendTo($row),
+		$deleteIcon = $("<div>")						
+						.addClass("icon")
+						.addClass("delete")
+						.appendTo($delete);
+
+		// Apply current status
+		$row
+			.toggleClass("in_progress", oTodo.status.in_progress)
+			.toggleClass("complete", oTodo.status.completed);
+
+
+		// Check click behavior
+		$checkIcon.bind("click", function(e) {
+
+			// Add busy class
+			if ($row.hasClass("busy")) return;
+			$row.addClass("busy");
+
+			// Get data object
+			var oTodo = $row.data("todo"),
+				bInProgress,
+				bComplete;
+
+			// Neither?
+			if (oTodo.status.in_progress === false && oTodo.status.completed === false) {
+
+				// Set to in progress
+				bInProgress = true;	
+				bComplete = false;
+				
+			} else if (oTodo.status.in_progress === true) {
+
+				// Set to complete
+				bInProgress = false;
+				bComplete = true;
+				
+			} else if (oTodo.status.completed === true) {
+
+				// Set to reset
+				bInProgress = false;
+				bComplete = false;
+				
+			}
+
+			// Submit it to the server
+			$.ajax({
+
+				url: Routes.band_todo_group_todo_status_path('<%= @current_band.to_param %>', oList.to_param, oTodo.to_param),
+				type: "post",
+				dataType: "json",
+				data: {
+					todo_status: {
+						completed: bComplete,
+						in_progress: bInProgress
+					}
+				}
+
+			}).then(function(result) {
+
+				// Add result to todo's statuses
+				oTodo.todo_statuses.unshift(result);
+				oTodo.status = result;
+				$row.data("todo", oTodo);
+
+				// Apply it
+				$row
+					.toggleClass("in_progress", result.in_progress)
+					.toggleClass("complete", result.completed);
+
+			}).fail(function(result) {
+
+				// 
+				alert("ERROR :(");
+
+			}).done(function() {
+
+				// No longer busy
+				$row.removeClass("busy");
+
+			});
+
+			console.log(bInProgress, bComplete);
+
+
+		});
+
+
+
+		// Add it
+		$table.append($row);
+
+
+	}	
+
+
+	// Add behavior to add form
+	$(".form-add-todo-list").bind("success", function(e, result) {
+
+		// Add it!
+		$.todos.addList(result);
+
+	});
+
+
+	// Load to-do's now
+	$.todos.load();
+
+
+});

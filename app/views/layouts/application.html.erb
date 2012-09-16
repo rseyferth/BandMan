@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BandMan</title>
+  <%= stylesheet_link_tag    "screen", :media => "screen, projection" %>
+  <%= stylesheet_link_tag    "print", :media => "print" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "i18n/" + I18n.locale.to_s %>
+  <%= yield :javascript_includes %>
+  <%= csrf_meta_tags %>
+
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  </script>
+</head>
+<body>
+
+	<header>
+		<h1><%= t "frontend.site.name" %></h1>
+	</header>
+
+	<div class="main">
+
+		<% if flash[:alert] %>
+			<p class="alert"><%= flash[:alert] %></p>
+		<% end %>
+
+		<% if flash[:notice] %>
+			<p class="notice"><%= flash[:notice] %></p>
+		<% end %>
+
+		<% if flash[:error] %>
+			<p class="error"><%= flash[:error] %></p>
+		<% end %>
+
+		<% if @current_user %>
+			<%= render "layouts/userheader" %>
+		<% end %>
+
+		<div class="content">
+			<%= yield %>
+		</div>
+
+	</div>
+
+
+
+	<footer>
+
+	</footer>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<% content_for :javascript_includes do %>
+	<%= javascript_include_tag band_todo_group_todo_path + ".js" %>
+<% end %>
+<div class="main-content">
+
+	<div class="todo-detail ajax-content" data-source="<%= request.fullpath %>.json"></div>
+
+	<%= render :template => "comments/index", 
+				:locals => {
+					:path => band_todo_group_todo_comments_path(@current_band.to_param, @todo.group.to_param, @todo)
+				}  %>
+
+
+</div>
+<div class="sidebar">
+
+	<%= render :partial => "todo_groups/sidebar" %>
+
+</div>

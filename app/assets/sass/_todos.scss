@@ -1,0 +1,373 @@
+.main .content {
+
+	.todos {
+
+		min-height: emsize(80px);
+
+
+		.todo-list {
+
+			margin-bottom: emsize(20px);
+
+			h2 {
+
+				margin-bottom: 0;
+
+			}
+
+			.description {
+
+				font-family: $helvThin;
+				font-size: emsize(12px);
+				color: $textGray;
+
+			}
+
+			table {
+				margin: emsize(5px) 0 0 0;
+				padding: 0;
+
+				tr {
+
+					margin: 0;
+					list-style: none;
+					padding: 0;
+					min-height: emsize(36px);
+					border-bottom: 1px solid #e0e0e0;
+
+					> td { 
+						padding: 0; 
+						vertical-align: top;
+					}
+
+					
+					.dragger {
+
+						background: sprite($gfx, "listitem-dragger");
+						background-repeat: no-repeat;
+						width: 21px;
+						height: 36px;
+						cursor: pointer;
+						
+					}
+
+					.check {
+
+						.icon {
+							background: sprite($gfx, "listitem-check-gray");
+							@include sprite-dimensions($gfx, "listitem-check-gray");							
+							@include opacity(0.5);
+						}
+						.icon:hover {
+							@include opacity(1);
+						}
+
+						
+						padding-top: emsize(6px);
+						cursor:pointer;
+					}
+
+					.title {
+
+						padding: emsize(9px) emsize(18px) emsize(8px);
+						font-family: $helvLight;
+						font-size: emsize(13px);
+						
+
+						width: emsize($mainContentWidth 
+									- 21px // Dragger
+									- 24px // Check icon
+									- (18px * 2) // My own padding
+									- (110px + 8px) // Comments
+									- (24px + 6px) // Delete
+								);
+
+					}
+
+					.comments {
+
+						cursor: pointer;
+						float: right;
+						padding-right: emsize(8px);
+						width: emsize(134px);
+
+						.icon {
+							margin-top: emsize(6px);
+							@include opacity(0.2);
+							float: left;
+							margin-right: emsize(4px);
+						}
+
+						.icon.attachment {
+							visibility: hidden;
+						}
+
+						span {
+							display: inline-block;
+							font-family: $helvLight;
+							font-size: emsize(11px);
+							color: #808080;
+							padding: emsize(11px) 0 0 emsize(7px);
+
+						}
+
+					}
+					.comments:hover {
+
+						.icon {
+							@include opacity(0.5);
+						}
+						span {
+							color: #333333;
+							text-decoration: underline;
+						}
+
+					}
+
+					.comments.attachments {
+						.icon.attachment {
+							visibility: visible;
+						}
+					}
+
+					.delete {
+
+						margin: emsize(6px) emsize(6px) 0 0;
+						cursor: pointer;	
+
+						.icon {
+							@include opacity(0);						
+						}
+
+
+					}
+
+				}
+
+				tr:hover {
+					background-color: #f7f7f7;
+
+					.delete {
+						.icon {
+							@include opacity(0.2);	
+						}						
+					}
+					.delete {
+						.icon:hover {
+							@include opacity(0.5);
+						}
+					}
+
+				}
+
+				tr.in_progress {
+
+					.check {
+						.icon {
+							background: sprite($gfx, "listitem-check-orange");				
+							@include opacity(0.8);			
+						}
+						.icon:hover {
+							@include opacity(1);	
+						}
+					}
+
+					.title {
+						color: #fcc227;
+					}
+
+				}
+
+				tr.complete {
+					.check {
+						.icon {
+							background: sprite($gfx, "listitem-check-green");							
+							@include opacity(0.8);
+						}
+						.icon:hover {
+							@include opacity(1);	
+						}
+					}
+
+					.title {
+						color: #78a060;
+						text-decoration: line-through;
+					}
+				}
+
+				tr.busy, tr.in_progress.busy, tr.complete.busy {
+					.check {
+						.icon {
+							cursor: default;
+							background: image-url("ajax-loader-24.gif");	
+						}
+					}
+				}
+
+
+			}
+
+			.form-add-todo {
+
+				position: relative;
+				height: emsize(46px);
+				$formLeft: 20px + 24px + 18px - 6px;
+
+				> .icon {
+					display: inline-block;
+					margin-left: emsize(20px);
+					margin-top: emsize(6px);
+					@include opacity(0.2);
+
+				}
+				.click-header {
+					
+					position: absolute;
+					left: $formLeft + 6px;
+					top: emsize(9px);
+					font-family: $helvLight;
+					font-size: emsize(13px);
+					color: rgba(#000, 0.2);
+					cursor: pointer;
+				}
+				form {
+
+					display: none;
+					position: absolute;
+					
+					left: emsize($formLeft);
+					top: 0;
+
+					.field {
+
+						.input {
+							width: emsize($mainContentWidth - $formLeft - 12px);
+
+							input {
+								width: emsize($mainContentWidth - $formLeft - 12px - 50px, 16px);
+							}
+
+						}
+
+					}
+
+				}
+
+			}
+			.form-add-todo.active {
+
+				.click-header {
+					display: none;
+				}
+
+				form {
+					display: block;
+				}
+
+			}
+
+			.form-add-todo:hover {
+
+				> .icon {
+					@include opacity(0.5);
+				}
+				.click-header {
+					color: rgba(#000, 0.5);
+				}
+
+			}
+
+
+		}
+
+	}
+
+	
+}
+
+
+.main .content .main-content {
+
+	.todo-detail {
+
+		h2 {
+
+			.check {
+				background: sprite($gfx, "listitem-check-gray");							
+				margin-right: emsize(6px);
+				cursor: pointer;
+				@include opacity(0.5);
+			}
+			.check:hover {
+				@include opacity(1);
+			}
+
+
+
+		}
+
+		.todo-details {
+
+			ul.statuses {
+				margin: 0;
+				padding: 0;
+				list-style: none; 
+
+				>li {
+					font-family: $helvLight;
+					font-size: emsize(13px);
+					color: rgba($black, 0.5);
+				}
+				>li:before {
+					content: "- ";
+				}
+			}
+
+		}
+
+	}
+
+	.todo-detail.in-progress {
+
+		h2 {
+
+			.check {
+				background: sprite($gfx, "listitem-check-orange");							
+				@include opacity(0.8);
+			}
+			.check:hover {
+				@include opacity(1);
+			}
+
+			span {
+				color: #fcc227;	
+			}
+			
+
+		}
+
+	}
+
+	.todo-detail.complete {
+
+		h2 {
+
+			.check {
+				background: sprite($gfx, "listitem-check-green");							
+				@include opacity(0.8);
+			}
+			.check:hover {
+				@include opacity(1);
+			}
+
+			span {
+				color: #78a060;
+				text-decoration: line-through;
+			}
+			
+
+		}
+
+	}
+
+}

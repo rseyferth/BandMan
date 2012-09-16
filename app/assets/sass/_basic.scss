@@ -1,0 +1,133 @@
+/**
+ * Basic styles
+ */
+
+body {
+	background-color: $darkGray;
+	margin: 0 0 0 emsize(24px);	
+	font-size: 13px;
+	font-family: $helvRoman;
+}
+
+h1 {
+	font-family: $helvThin;
+	font-weight: normal;
+	font-size: emsize(28px);
+	color: $white;
+	line-height: 1em;
+}
+
+h2 {
+	font-family: $helvThin;
+	font-weight: normal;
+	font-size: emsize(24px);
+	color: $white;
+	line-height: 1em;
+}
+
+
+
+header {
+	margin: 0;
+	img {
+		display: block;
+	}
+}
+
+
+hr {
+	margin: emsize(20px) 0;
+	border: 0;
+	height: 1px;
+	background-color: #dadada;
+}
+
+
+/**
+ * Main content container
+ */
+.main { 
+
+	background-color: white;
+	display: block;	
+	font-size: emsize(13px);	
+	width: emsize($contentWidth + 36px * 2);
+	
+	.content {
+		padding: emsize(36px);
+		
+		h1 {
+
+			color: $black;
+			font-size: emsize(28px, 13px);
+			margin: 0 0 emsize(10px, 28px);
+
+		}
+
+		h2 {
+
+			color: $black;
+			margin: 0 0 emsize(10px, 24px);
+
+			.icon {
+				display: inline-block;
+				margin-right: emsize(10px, 24px);
+				position: relative;
+				top: emsize(4px, 24px);
+				@include opacity(0.2);
+			}
+
+			a {
+				text-decoration: none;
+				color: $black;
+			}
+			a:hover {
+				text-decoration: underline;
+				background: none;
+			}
+
+		}
+
+		h1, h2 {
+
+			a.breadcrumb {
+				color: rgba($black, 0.5);
+				text-decoration: none;
+				margin-right: emsize(6px, 24px);
+			}
+			a.breadcrumb:hover {
+				text-decoration: underline;
+			}
+			
+		}
+
+		.main-content {
+
+			width: emsize($mainContentWidth);
+
+
+			.indent {
+				margin-left: emsize(35px);
+			}
+
+			.ajax-content {
+				min-height: emsize(40px);
+			}
+			.ajax-content.loading {
+
+				background: image-url('ajax-loader.gif');
+				background-repeat: no-repeat;
+
+			}
+
+
+		}
+
+
+
+
+	}
+
+	
+
+}

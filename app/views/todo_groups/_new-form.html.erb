@@ -1,0 +1,41 @@
+<div class="form ajax folding rich small form-add-todo-list">
+
+	<h2 class="folding-title"><div class="icon plus"></div><%= t "frontend.todo_groups.new.title" %></h2>
+
+	<div class="folding-content">
+
+		<%= form_for :todo_group, :url => band_todo_groups_path, :html => { :class => "rich" } do |f| %>
+		  
+			<%= f.hidden_field :band_id, :value => @current_band.id %>
+
+			<div class="field">
+				<%= f.label :title, t("frontend.todo_groups.title.label") %>
+		    	<%= f.text_field :title, 
+		    			:placeholder => t("frontend.todo_groups.title.placeholder"),
+						"data-validate" => "min-length: 2"
+				%>
+			</div>
+
+			<div class="field">
+				<%= f.label :description, t("frontend.todo_groups.description.label") %>
+		    	<%= f.text_area :description, 
+		    			:placeholder => t("frontend.todo_groups.description.placeholder"),
+						"data-validate" => "optional: true"
+				%>
+			</div>
+
+			<div class="actions">
+				<a href="#" class="button main-action submit"><%= t "frontend.todo_groups.new.submit" %></a>
+			</div>
+
+		<% end %>
+
+		<div class="form-complete">
+
+			<%= t "frontend.todo_groups.new.complete" %> <a href="#" class="reset-form"><%= t "frontend.todo_groups.new.resetlink" %></a>.
+
+		</div>
+
+	</div>
+
+</div>

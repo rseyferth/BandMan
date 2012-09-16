@@ -1,0 +1,27 @@
+.main-content .comments {
+
+	.comments-list {
+
+		.comment {
+
+			h3 {
+				font-family: $helvLight;
+				font-size: emsize(18px);
+				color: rgba($black, 0.5);
+				margin: 0;
+				font-weight: normal;
+			}
+
+			.date {
+				font-family: $helvLight;
+				font-size: emsize(12px);
+				color: rgba($black, 0.5);
+				margin-bottom: emsize(8px);
+			}
+
+		}
+
+	}
+
+
+}

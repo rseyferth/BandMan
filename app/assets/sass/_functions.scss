@@ -1,0 +1,32 @@
+/**
+ * Font size em calculator
+ */
+@function emsize($px, $parentPx: 13px) {
+	@return ($px / $parentPx) * 1em;
+}
+
+/**
+ * Input placeholder styling 
+ */
+@mixin input-placeholder($color) {
+  &.placeholder {
+    color: $color; 
+    }
+  &:-moz-placeholder {
+    color: $color; 
+    }
+  &::-webkit-input-placeholder {
+    color: $color; 
+    } 
+}
+
+/**
+ * No user selection
+ */
+@mixin user-select($select) {
+  -moz-user-select: -moz-#{$select};
+  -khtml-user-select: $select;
+  -webkit-user-select: $select;
+  -o-user-select: $select;
+  user-select: $select;
+}

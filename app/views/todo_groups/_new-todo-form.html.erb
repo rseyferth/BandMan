@@ -1,0 +1,18 @@
+<div class="form ajax rich form-add-todo">
+
+	<div class="icon plus"></div>
+	<div class="click-header">
+		<%= t "frontend.todos.new.header" %>
+	</div>
+
+	<%= form_for :todo, :html => { :class => "rich" } do |f| %>
+
+		<div class="field">
+			<%= f.text_field :title, 
+	    			:placeholder => t("frontend.todos.new.title.placeholder"),
+					"data-validate" => "min-length: 2"
+			%>
+		</div>
+
+	<% end %>
+</div>

@@ -1,0 +1,32 @@
+$icons24: sprite-map("icons/24x24/*.png");
+
+.icon {
+	width: 24px;
+	height: 24px;
+}
+
+.icon.attachment {
+	background: sprite($icons24, "attachment");
+}
+.icon.checkmark {
+	background: sprite($icons24, "checkmark");
+}
+.icon.warning {
+	background: sprite($icons24, "warning");
+}
+.icon.like {
+	background: sprite($icons24, "like");
+}
+.icon.heart {
+	background: sprite($icons24, "heart");
+}
+.icon.plus {
+	background: sprite($icons24, "plus");	
+}
+.icon.comment {
+	background: sprite($icons24, "comment");		
+}
+.icon.delete {
+	background: sprite($icons24, "bin");			
+}
+

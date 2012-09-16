@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  band: 
+  created_by: 
+  title: MyString
+  description: MyString
+  order: 
+
+two:
+  band: 
+  created_by: 
+  title: MyString
+  description: MyString
+  order: 

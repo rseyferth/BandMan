@@ -1,0 +1,34 @@
+// Website settings
+$contentWidth: 960px;
+$mainContentWidth: 662px;
+$sideBarWidth: 286px;
+
+// Compass libraries used througout
+@import "compass/css3";
+@import "compass/utilities";
+
+// Normalization library (like boilerplate)
+@import "normalize";
+
+// Get gfx sprite
+$gfx: sprite-map("gfx/*.png");
+
+// Functions and colors
+@import "functions";
+@import "colors";
+
+// Default Rails scaffold styles (to be removed eventually)
+//@import "scaffolds";
+
+// Custom fonts and icons
+@import "fonts";
+@import "icons";
+
+// Style parts :)
+@import "basic";
+@import "usernav";
+@import "forms";
+@import "_todos.scss";
+@import "comments";
+
+@import "gui";

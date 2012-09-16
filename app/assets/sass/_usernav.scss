@@ -1,0 +1,34 @@
+/**
+ * User header
+ */
+.userheader {
+
+	display: block;
+
+	@include background-image(
+		linear-gradient($greenGradientLight, $greenGradientDark)
+	);
+
+	.band, .user {
+
+		display: inline-block;
+
+		.title {
+			font-family: $helvThin;
+			font-size: emsize(24px);
+			padding: emsize(10px);
+			color: $white;
+		}
+
+	}	
+
+	.band {
+
+	}
+
+	.user {
+		float: right;
+	}
+
+
+}

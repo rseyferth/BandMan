@@ -1,0 +1,38 @@
+<div id="signup-step2" class="step">
+	
+	<div class="columns">
+		<div class="column">
+			<div class="field">
+				<%= label :band, :bandname, t("frontend.signup.step2.bandname.label") %>
+				<%= text_field :band, :bandname,
+						:placeholder => t("frontend.signup.step2.bandname.placeholder"),
+						"data-validate" => "min-length: 2, max-length: 30"
+				%>
+			</div>
+			<div class="field">
+				<%= label :band, :country, t("frontend.signup.step2.country.label") %>
+				<%= country_select :band, :country_code, {priority: @defaultCountries}, prompt: t("frontend.signup.step2.country.placeholder") %>
+			</div>
+
+			<div class="field">
+				<%= label :band, :state, t("frontend.signup.step2.state.label") %>
+				<%= subregion_select :band, :state_code, @defaultCountry %>
+			</div>
+		</div>
+		<div class="column">
+
+			<div class="field">
+				<%= label :band, :genres, t("frontend.signup.step2.genres.label") %>
+				<%= select_tag 'band[genres][]', options_for_select(@genres.map { |g| [g.genre, g.id] }), 
+							:multiple => true, :size => 9 %>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="actions">
+		<a href="#" class="button prev-step back"><%= t "frontend.signup.buttons.back_to_step1" %>
+		<a href="#" class="button main-action next-step"><%= t "frontend.signup.buttons.submit" %></a>
+	</div>
+
+</div>
