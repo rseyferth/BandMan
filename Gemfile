@@ -1,11 +1,18 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gem 'rails', '3.2.1'
+
+gem "heroku"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
+
+
+
 
 
 # Gems used only for assets and not required
@@ -32,6 +39,9 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Carmen rails for localized country/region info
 gem 'carmen-rails', '~> 1.0.0.beta3'
+
+gem "execjs"
+gem "therubyracer"
 
 
 # To use Jbuilder templates for JSON
