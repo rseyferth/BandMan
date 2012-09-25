@@ -3,19 +3,21 @@
 #
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
-common: &common
-  adapter: postgresql
-  username: postgres
-  password: 1395.nl
-
+  
 development:
-  <<: *common
-  database: bandman_development
+  adapter: sqlite3
+  database: db/bandman_development.sqlite3
+  pool: 5
+  timeout: 5000
   
 test:
-  <<: *common
-  database: bandman_test
+  adapter: sqlite3
+  database: db/bandman_test.sqlite3
+  pool: 5
+  timeout: 5000
 
 production:
-  <<: *common
   database: bandman_production
+  adapter: postgresql
+  username: postgres
+
