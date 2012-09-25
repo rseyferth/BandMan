@@ -27,13 +27,15 @@ end
 group :assets do
   gem "compass"
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'compass-rails'  
   
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'compass-rails'  
+ 
 
 gem 'jquery-rails'
 
