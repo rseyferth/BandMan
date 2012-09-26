@@ -47,6 +47,11 @@ class User < ActiveRecord::Base
 		self.contact.fullname
 	end
 
+
+  	def as_json(options = {})
+		super options.merge(JSON_OPTIONS)
+	end
+  
 	def avatar_thumb
 		self.avatar.url(:thumb)
 	end
@@ -60,11 +65,6 @@ class User < ActiveRecord::Base
   	def copy_email_to_contact
   		self.contact.email = self.email
   	end
-
-  	def as_json(options = {})
-		super options.merge(JSON_OPTIONS)
-	end
-  
 
 
 end
