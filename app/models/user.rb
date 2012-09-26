@@ -38,16 +38,16 @@ class User < ActiveRecord::Base
 		self.contact.fullname
 	end
 
-	
-  	private
-  	def copy_email_to_contact
-  		self.contact.email = self.email
-  	end
 
   	def as_json(options = {})
 		super options.merge(JSON_OPTIONS)
 	end
   
+	
+  	private
+  	def copy_email_to_contact
+  		self.contact.email = self.email
+  	end
 
 
 end
