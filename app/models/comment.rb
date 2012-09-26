@@ -8,9 +8,20 @@ class Comment < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :commentable, :polymorphic => true
 
+	before_create :set_current_user
+
+
 
 	def as_json(options = {})
 		super options.merge(JSON_OPTIONS)
+	end
+
+
+	private
+	def set_current_user
+
+		self.user = User.current
+
 	end
 
 end

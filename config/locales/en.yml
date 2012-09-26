@@ -82,10 +82,15 @@ en:
         one: "1 comment"
         other: "%{count} comments"
         zero: "0 comments"
+      new:
+        complete: "Your comment was added."
+        resetlink: "Click here to add another"
+        submit: "Add comment"
 
     words:
       step: "Step"
       nextstep: "Next step"
+      presently: "presently"
 
 
     validation:

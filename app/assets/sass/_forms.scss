@@ -161,7 +161,6 @@ $colorValidationNeutral: #f9f9f9;
 
 		margin-top: emsize(20px);
 
-		width: emsize(904px - 40px);
 		background-color: #f00;
 		padding: emsize(11px) emsize(20px) emsize(11px) emsize(20px);
 		text-align: right;
@@ -213,16 +212,15 @@ $colorValidationNeutral: #f9f9f9;
 	.actions {
 
 		margin-top: 0;
-
-		background-color: #f00;
+		@include border-radius(0);
+		background: none;
+		background-color: #f3f3f3;
 		padding: emsize(11px);
-		text-align: right;
-		width: emsize(422px - 22px);
-
+		text-align: left;
+		
 		a.button {
 
-			font-size: emsize(16px);
-
+			font-size: emsize(13px);
 
 		}
 
@@ -342,6 +340,39 @@ $colorValidationNeutral: #f9f9f9;
 
 	h1, h2 {
 		@include opacity(0.5);
+	}
+
+}
+
+/**
+ * Redactor styling
+ */
+.redactor_box {
+
+	.redactor_toolbar {
+		background: #f3f3f3;
+		border: none;
+	}
+
+	.redactor_editor {
+
+		background: none !important;
+		font-family: $helvLight !important;
+		font-size: emsize(12px) !important;
+
+		> * {
+
+			font-family: $helvLight !important;
+			font-size: 1em !important;
+
+
+		}
+
+		a {
+			color: $textGreen !important;
+			text-decoration: underline;
+		}
+
 	}
 
 }

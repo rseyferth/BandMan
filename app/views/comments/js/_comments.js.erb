@@ -66,22 +66,36 @@ $(document).ready(function(){
 							.addClass("comment")
 							.data("comment", oComment),
 
+		// Image
+		$imageContainer = $("<div>")
+							.addClass("user-image")
+							.appendTo($comment),
+
+		$image = $("<img>")
+							.attr("src", oComment.user.avatar_thumb)
+							.appendTo($imageContainer),
+
+		// Details
+		$details = $("<div>")
+							.addClass("comment-details")
+							.appendTo($comment),
+
 		// Name
 		$name = $("<h3>")
 					.html(oComment.user.fullname)
-					.appendTo($comment),
+					.appendTo($details),
 
 		// Date 
 		$date = $("<div>")
 					.addClass("date")
 					.html($.timeago(oComment.created_at))
-					.appendTo($comment),
+					.appendTo($details),
 
 		// Message
 		$message = $("<div>")
 					.addClass("message")
 					.html(oComment.message)
-					.appendTo($comment),
+					.appendTo($details),
 
 		// HR
 		$hr = $("<hr>")
@@ -94,6 +108,20 @@ $(document).ready(function(){
 		$comment.appendTo($.comments.target);
 
 	}
+
+	// When comment is added...
+	$(".form-new-comment").bind("success", function(e, oComment) {
+
+		// Add it
+		$.comments.addComment(oComment);
+
+		// Set number in title
+		$.comments.title.find(".number_of_comments").html(
+			$(".comments-list").find(".comment").length.toString());
+
+
+	});
+
 
 
 	// Load now

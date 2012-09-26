@@ -23,6 +23,8 @@
 //= require jquery.folding.js
 //= require jquery_ujs
 
+//= require redactor-rails
+
 //= require js-routes
 //= require i18n
 //= require forms

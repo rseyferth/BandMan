@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910160705) do
+ActiveRecord::Schema.define(:version => 20120918130315) do
 
   create_table "band_genres", :force => true do |t|
     t.integer  "band_id"
@@ -109,10 +109,14 @@ ActiveRecord::Schema.define(:version => 20120910160705) do
     t.string   "preferred_locale"
     t.datetime "lastlogin_at"
     t.integer  "contact_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
     t.datetime "activated_at"
     t.string   "activation_code"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["contact_id"], :name => "index_users_on_contact_id"

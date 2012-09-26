@@ -1,23 +1,57 @@
 .main-content .comments {
 
-	.comments-list {
+	.comments-list, .form-new-comment {
 
 		.comment {
 
-			h3 {
-				font-family: $helvLight;
-				font-size: emsize(18px);
-				color: rgba($black, 0.5);
-				margin: 0;
-				font-weight: normal;
+			position: relative;
+
+			.comment-details {
+
+				margin-left: emsize(58px + 12px);
+
+				h3 {
+					font-family: $helvLight;
+					font-size: emsize(18px);
+					color: rgba($black, 0.5);
+					margin: 0;
+					font-weight: normal;
+				}
+
+				.date {
+					font-family: $helvLight;
+					font-size: emsize(12px);
+					color: rgba($black, 0.5);
+					margin-bottom: emsize(8px);
+				}
+
+				.message {
+
+					font-family: $helvLight;
+					font-size: emsize(12px);
+
+				}
+
 			}
 
-			.date {
-				font-family: $helvLight;
-				font-size: emsize(12px);
-				color: rgba($black, 0.5);
-				margin-bottom: emsize(8px);
+
+
+			.user-image {
+				
+				position: absolute;
+				left: 0;
+				top: 0;
+
+				img {
+
+					border: emsize(4px) solid rgba(#000, 0.1);
+					width: emsize(50px);
+					height: emsize(50px);
+
+				}
+
 			}
+
 
 		}
 

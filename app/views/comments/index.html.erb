@@ -1,5 +1,6 @@
 <% content_for :javascript_includes do %>
 	<%= javascript_include_tag path + ".js" %>
+	
 <% end %>
 
 <div class="comments">
@@ -10,6 +11,45 @@
 	<div class="comments-list ajax-content indent" data-source="<%= path %>.json">
 
 	</div>
+
+	<div class="indent">
+
+		<div class="form-new-comment form small rich ajax">
+			<form action="<%= path %>" class="rich">
+			<%= form_for :comment, :action => path, :class => "rich"  do |f| %>
+		
+			<div class="comment">
+
+				<div class="user-image"><%= image_tag @current_user.avatar.url(:thumb) %></div>
+				<div class="comment-details">
+
+					<h3><%= @current_user.fullname %></h3>
+					<div class="date"><%= (t "frontend.words.presently").titleize() %></div>
+					<%= f.text_area :message, :class => "redactor" %>
+
+					<div class="actions">
+						<a href="#" class="button main-action submit"><%= t "frontend.comments.new.submit" %></a>
+					</div>
+
+
+				</div>
+
+			</div>
+
+			<% end %>
+
+			<div class="form-complete">
+
+				<%= t "frontend.comments.new.complete" %> <a href="#" class="reset-form"><%= t "frontend.comments.new.resetlink" %></a>.
+
+			</div>
+		</div>
+
+		
+
+	</div>
+
+
 
 </div>
 

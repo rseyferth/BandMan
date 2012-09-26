@@ -35,4 +35,8 @@ BandMan::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  # Paperclip config
+  Paperclip.options[:command_path] = "C:/Program Files (x86)/ImageMagick-6.7.9-Q16"
+  Paperclip.options[:swallow_stderr] = false
+
 end

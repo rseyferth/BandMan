@@ -34,6 +34,15 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'carmen-rails', '~> 1.0.0.beta3'
 
 
+# Paperclip
+gem 'paperclip', "~> 3.0"
+
+# Redactor (rich text)
+gem 'redactor-rails'
+
+gem 'heroku'
+
+
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 

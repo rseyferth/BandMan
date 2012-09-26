@@ -17,8 +17,8 @@ $gfx: sprite-map("gfx/*.png");
 @import "functions";
 @import "colors";
 
-// Default Rails scaffold styles (to be removed eventually)
-//@import "scaffolds";
+// Redactor
+@import "redactor-rails";
 
 // Custom fonts and icons
 @import "fonts";

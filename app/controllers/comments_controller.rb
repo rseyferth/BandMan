@@ -15,6 +15,20 @@ class CommentsController < ApplicationController
 
 	end
 
+
+	def create
+
+		comment = @commentable.comments.create(params[:comment])
+
+		if comment.save
+    		render :json => comment, :status => :created
+    	else
+    		render :json => status.errors, :status => :unprocessable_entity
+    	end
+
+	end
+
+
 	private
 	def find_commentable
 
