@@ -25,7 +25,7 @@
 
 					<h3><%= @current_user.fullname %></h3>
 					<div class="date"><%= (t "frontend.words.presently").titleize() %></div>
-					<%= f.text_area :message, :class => "redactor" %>
+					<%= f.text_area :message, :class => "rich" %>
 
 					<div class="actions">
 						<a href="#" class="button main-action submit"><%= t "frontend.comments.new.submit" %></a>

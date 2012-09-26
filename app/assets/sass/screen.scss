@@ -11,15 +11,15 @@ $sideBarWidth: 286px;
 // Normalization library (like boilerplate)
 @import "normalize";
 
+// Redactor
+@import "redactor-rails";
+
 // Get gfx sprite
 $gfx: sprite-map("gfx/*.png");
 
 // Functions and colors
 @import "functions";
 @import "colors";
-
-// Redactor
-@import "redactor-rails";
 
 // Custom fonts and icons
 @import "fonts";

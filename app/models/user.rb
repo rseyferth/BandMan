@@ -22,7 +22,10 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :password, :password_confirmation, :preferred_locale, :date_lastlogon, :contact_attributes, :contact, :bands, :avatar
 
 	# Avatar image
-	has_attached_file :avatar, :styles => { :medium => ["300x300>", :png], :thumb => ["50x50>", :png] }
+	has_attached_file :avatar, :styles => { 
+		:medium => ["300x300>", :png], 
+		:thumb => ["50x50>", :png]
+	}, :default_url => "/assets/avatars/:style/missing.png"
 	
 	# Authentication
 	has_secure_password

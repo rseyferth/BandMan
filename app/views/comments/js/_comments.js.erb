@@ -61,6 +61,10 @@ $(document).ready(function(){
 	// Add a comment
 	$.comments.addComment = function(oComment) {
 
+		// Parse message
+		var sMessage = oComment.message;
+		sMessage = linkify(sMessage);
+
 		// Main object
 		var $comment = $("<div>")
 							.addClass("comment")
@@ -94,7 +98,7 @@ $(document).ready(function(){
 		// Message
 		$message = $("<div>")
 					.addClass("message")
-					.html(oComment.message)
+					.html(sMessage)
 					.appendTo($details),
 
 		// HR

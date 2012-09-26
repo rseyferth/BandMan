@@ -1,39 +1,49 @@
-$(document).ready(function() {
-	
-	// Already done?
-	if (typeof $.bandman !== "undefined") return;
-
-	// Generic ajax error handler
-	$.bandman = {};
-	$.bandman.onError = function(e, error) {
+(function(jQuery) {
+	$(document).ready(function() {
 		
-		// Show notification
-		$.notification.show({
-			type: "error",
-			ajaxError: error
-		});
+		// Already done?
+		if (typeof $.bandman !== "undefined") return;
 
-	};
+		// Generic ajax error handler
+		$.bandman = {};
+		$.bandman.onError = function(e, error) {
+			
+			// Show notification
+			$.notification.show({
+				type: "error",
+				ajaxError: error
+			});
 
-	// Initialize rich forms
-	$("form.rich").richForm();
+		};
 
-	// Enrich multi select boxes
-	$("select[multiple]").multiSelectTags();
+		// Initialize rich forms
+		$("form.rich").richForm();
 
-	// Enrich step forms
-	$(".form.steps").stepWizard();
+		// Enrich multi select boxes
+		$("select[multiple]").multiSelectTags();
 
-	// Activate ajax forms and show its errors in notification
-	$(".form.ajax").ajaxForm()
-		.bind("error", $.bandman.onError);
+		// Enrich step forms
+		$(".form.steps").stepWizard();
 
-	// Set default notification area
-	$.notification.defaultTarget = $(".main");
+		// Activate ajax forms and show its errors in notification
+		$(".form.ajax").ajaxForm()
+			.bind("error", $.bandman.onError);
 
-	// Folding
-	$(".folding").folding();
+		// Set default notification area
+		$.notification.defaultTarget = $(".main");
 
-});
+		// Folding
+		$(".folding").folding();
 
+		// Redactor
+		$("textarea.rich").redactor({ 
+			buttons: [
+				"bold", "italic", "deleted", "|",
+				"unorderedlist", "orderedlist", "|",
+				"indent", "outdent"
+			]
+      	});
 
+	});
+
+})(jQuery);

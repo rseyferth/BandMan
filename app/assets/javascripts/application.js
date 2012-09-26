@@ -13,6 +13,10 @@
 //= require jquery
 //= require jquery.timeago
 
+//= require simple-functions
+
+//= require redactor-rails
+
 //= require jquery.validate.js
 //= require jquery.richform.js
 //= require jquery.stepwizard.js
@@ -23,7 +27,6 @@
 //= require jquery.folding.js
 //= require jquery_ujs
 
-//= require redactor-rails
 
 //= require js-routes
 //= require i18n

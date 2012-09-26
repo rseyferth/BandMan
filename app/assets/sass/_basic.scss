@@ -54,7 +54,7 @@ hr {
 	width: emsize($contentWidth + 36px * 2);
 	
 	.content {
-		padding: emsize(36px);
+		padding: emsize(36px) emsize(16px);
 		
 		h1 {
 
